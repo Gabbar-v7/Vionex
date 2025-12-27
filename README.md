@@ -24,6 +24,31 @@ Install the dependencies:
 npm install
 ```
 
+Set the environment variables:
+
+```env
+# Application
+APP_URL=http://localhost:5173
+LOGGER_LEVEL=info
+SERVICE_NAME=web-app
+
+# Database
+DATABASE_URL=https://database.com/database
+
+# Secrets
+AUTH_SECRET=59CWLuDsF6IoWqnMqIUs4szQoKDsHAD7
+
+RAZORPAY_KEY=rzp_
+RAZORPAY_SECRET=
+
+# SMTP Configuration
+SMTP_HOST=smtp.gmail.com
+SMTP_PORT=587
+SMTP_SECURE=true
+SMTP_USER=me@example.com
+SMTP_PASS=supersecretpassword
+```
+
 ### Development
 
 Start the development server with HMR:

@@ -1,0 +1,23 @@
+import "dotenv/config"
+import { z } from "zod"
+
+const envSchema = z.object({
+    APP_URL: z.url(),
+    LOGGER_LEVEL: z.string(),
+    SERVICE_NAME: z.string(),
+
+    DATABASE_URL: z.url(),
+
+    AUTH_SECRET: z.string(),
+
+    RAZORPAY_KEY: z.string(),
+    RAZORPAY_SECRET: z.string(),
+
+    SMTP_HOST: z.hostname(),
+    SMTP_PORT: z.coerce.number(),
+    SMTP_SECURE: z.coerce.boolean(),
+    SMTP_USER: z.string(),
+    SMTP_PASS: z.string(),
+})
+
+export const appConfig = envSchema.parse(process.env)
