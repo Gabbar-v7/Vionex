@@ -2,7 +2,7 @@ import { betterAuth } from "better-auth";
 import { drizzleAdapter } from "better-auth/adapters/drizzle";
 import { mongodbAdapter } from "better-auth/adapters/mongodb";
 import { mongoDB, postgresDB } from "~/database";
-import { authSchema } from "~/database/schema";
+import { authSchema } from "~/database/pg.schema";
 import { appConfig } from "./env.server";
 
 export const auth = betterAuth({

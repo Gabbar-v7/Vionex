@@ -33,7 +33,8 @@ LOGGER_LEVEL=info
 SERVICE_NAME=web-app
 
 # Database
-DATABASE_URL=https://database.com/database
+POSTGRES_URL=https://database.com/database
+MONGODB_URL=https://database.com/database
 
 # Secrets
 AUTH_SECRET=59CWLuDsF6IoWqnMqIUs4szQoKDsHAD7
