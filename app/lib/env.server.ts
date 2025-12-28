@@ -6,7 +6,8 @@ const envSchema = z.object({
     LOGGER_LEVEL: z.string(),
     SERVICE_NAME: z.string(),
 
-    DATABASE_URL: z.url(),
+    POSTGRES_URL: z.url(),
+    MONGODB_URL: z.url(),
 
     AUTH_SECRET: z.string(),
 
