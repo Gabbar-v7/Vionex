@@ -45,19 +45,19 @@ type DesktopNavigationItemProps = {
 };
 
 const items: LinkItem[] = [
-  { name: "Dashboard", href: "/app/dashboard" },
-  { name: "History", href: "/app/history" },
+  { name: "Dashboard", href: "/user/dashboard" },
+  { name: "History", href: "/user/history" },
   {
     name: "Tools",
     href: "/app/tools/index",
     type: "multipart",
     description: "Access all your tools",
     children: [
-      { name: "Website Auditor", href: "/app/tools/analyzer" },
-      { name: "Builder: carbon.txt", href: "/app/tools/builders/carbon-txt" },
+      { name: "Website Auditor", href: "/user/tools/analyzer" },
+      { name: "Builder: carbon.txt", href: "/user/tools/builders/carbon-txt" },
     ],
   },
-  { name: "Settings", href: "/app/settings" },
+  { name: "Settings", href: "/user/settings" },
 ];
 
 const MobileNavigationItem = ({
@@ -203,8 +203,8 @@ const DesktopNavigationItem = ({
     <NavigationMenuItem>
       <Link
         to={item.href}
-        className={`group inline-flex h-10 w-max items-center justify-center rounded-lg bg-transparent px-4 py-2 text-lg font-semibold transition-all duration-200 hover:bg-muted hover:text-foreground focus:bg-muted focus:text-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-active:bg-muted/50 data-[state=open]:bg-muted/50 ${
-          isActive(item.href) ? "text-primary bg-primary/10" : "text-foreground"
+        className={`group inline-flex h-10 w-max items-center justify-center rounded-md px-4 py-2 text-lg font-semibold transition-colors duration-200 hover:bg-muted hover:text-foreground focus:outline-none focus-visible:ring-2 focus-visible:ring-ring ${
+          isActive(item.href) ? "bg-muted text-primary" : "text-foreground"
         }`}
       >
         {item.name}
