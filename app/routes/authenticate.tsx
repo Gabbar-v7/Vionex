@@ -27,6 +27,7 @@ import {
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
 import { APIError } from "better-auth/api";
+import { permissionLevel } from "~/data/const/auth.levels";
 
 const homePage = "/user/dashboard";
 
@@ -127,6 +128,7 @@ export async function action({ request }: ActionFunctionArgs) {
             name: "Random Septicai",
             email: email,
             password: password,
+            role: permissionLevel.USER,
             callbackURL: homePage,
             rememberMe: true,
           },
