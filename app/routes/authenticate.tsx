@@ -27,7 +27,7 @@ import {
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
 import { APIError } from "better-auth/api";
-import { permissionLevel } from "~/data/const/auth.levels";
+import { permissionLevel } from "~/data/const/auth.k";
 
 const homePage = "/user/dashboard";
 

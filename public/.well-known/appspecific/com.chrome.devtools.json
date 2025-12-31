@@ -1,0 +1,33 @@
+{
+  "name": "Vionex",
+  "description": "",
+  "framework": "React-Router",
+  "libraries": [
+    "tailwindcss",
+    "shadcn/ui",
+    "lucide-react"
+  ],
+  "author": {
+    "name": "Gabbar",
+    "url": "https://github.com/Gabbar-v7/Vionex"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Gabbar-v7/Vionex.git"
+  },
+  "homepage": "https://github.com/Gabbar-v7/Vionex",
+  "env": {
+    "runtime": "node",
+    "platform": "vercel | cloudflare | fly.io",
+    "features": ["SSR", "Edge Rendering", "API Routes"]
+  },
+  "ui": {
+    "theme": {
+      "mode": "light/dark",
+      "design": "clean, soft-shadowed, accessible",
+      "primaryColor": "#ffffff",
+      "fontFamily": "Inter, sans-serif"
+    },
+    "components": "Card, Button, Input, Alert, Label"
+  }
+}

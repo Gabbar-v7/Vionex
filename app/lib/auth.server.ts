@@ -82,6 +82,24 @@ export const auth = betterAuth({
     // }
   },
 
+  socialProviders: {
+    github: {
+      enabled: true,
+      clientId: appConfig.GITHUB_CLIENT_ID,
+      clientSecret: appConfig.GITHUB_CLIENT_SECRET,
+    },
+    google: {
+      enabled: true,
+      clientId: appConfig.GOOGLE_CLIENT_ID,
+      clientSecret: appConfig.GOOGLE_CLIENT_SECRET,
+    },
+    // facebook: {
+    //     enabled: true,
+    //     clientId: appConfig.FACEBOOK_CLIENT_ID,
+    //     clientSecret: appConfig.FACEBOOK_CLIENT_SECRET
+    // }
+  },
+
   session: {
     expiresIn: 60 * 60 * 24 * 7, // 7 days
     updateAge: 60 * 60 * 24 * 2 // 2 day (every 2 day the session expiration is updated)

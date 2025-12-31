@@ -11,6 +11,12 @@ const envSchema = z.object({
 
     AUTH_SECRET: z.string(),
 
+    GOOGLE_CLIENT_ID: z.string(),
+    GOOGLE_CLIENT_SECRET: z.string(),
+
+    GITHUB_CLIENT_ID: z.string(),
+    GITHUB_CLIENT_SECRET: z.string(),
+
     RAZORPAY_KEY: z.string(),
     RAZORPAY_SECRET: z.string(),
 
