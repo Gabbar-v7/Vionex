@@ -27,4 +27,4 @@ const envSchema = z.object({
     SMTP_PASS: z.string(),
 })
 
-export const appConfig = envSchema.parse(process.env)
+export const appEnv = envSchema.parse(process.env)

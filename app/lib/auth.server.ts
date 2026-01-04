@@ -3,11 +3,11 @@ import { drizzleAdapter } from "better-auth/adapters/drizzle";
 import { mongodbAdapter } from "better-auth/adapters/mongodb";
 import { mongoDB, postgresDB } from "~/database";
 import { authSchema } from "~/database/pg.schema";
-import { appConfig } from "./env.server";
+import { appEnv } from "./env.server";
 
 export const auth = betterAuth({
-  baseURL: appConfig.APP_URL,
-  secret: appConfig.AUTH_SECRET,
+  baseURL: appEnv.APP_URL,
+  secret: appEnv.AUTH_SECRET,
   database: mongodbAdapter(mongoDB),
 
   /**
@@ -85,18 +85,18 @@ export const auth = betterAuth({
   socialProviders: {
     github: {
       enabled: true,
-      clientId: appConfig.GITHUB_CLIENT_ID,
-      clientSecret: appConfig.GITHUB_CLIENT_SECRET,
+      clientId: appEnv.GITHUB_CLIENT_ID,
+      clientSecret: appEnv.GITHUB_CLIENT_SECRET,
     },
     google: {
       enabled: true,
-      clientId: appConfig.GOOGLE_CLIENT_ID,
-      clientSecret: appConfig.GOOGLE_CLIENT_SECRET,
+      clientId: appEnv.GOOGLE_CLIENT_ID,
+      clientSecret: appEnv.GOOGLE_CLIENT_SECRET,
     },
     // facebook: {
     //     enabled: true,
-    //     clientId: appConfig.FACEBOOK_CLIENT_ID,
-    //     clientSecret: appConfig.FACEBOOK_CLIENT_SECRET
+    //     clientId: appEnv.FACEBOOK_CLIENT_ID,
+    //     clientSecret: appEnv.FACEBOOK_CLIENT_SECRET
     // }
   },
 
