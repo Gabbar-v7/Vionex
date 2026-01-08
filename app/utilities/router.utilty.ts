@@ -1,7 +1,9 @@
 import { auth } from "~/lib/auth.server";
 import { ValidationError } from "./errors/validation.errors";
+import { data } from "react-router";
+import { type ApiResponse } from "./types/api.types";
 
-export async function authorizeRequest(request: Request, allowedMethod?: string, allowedRole?: number) {
+export async function authorizeRequest(request: Request, allowedMethod?: HttpMethod, allowedRole?: number) {
     // Method Check
     if (allowedMethod && request.method != allowedMethod)
         throw new ValidationError("request.method", "Method not allowed. Please try again!");
@@ -16,4 +18,12 @@ export async function authorizeRequest(request: Request, allowedMethod?: string,
         throw new ValidationError("auth.role", "Insufficient permissions.")
 
     return session;
+}
+
+export function requireHttpMethod(request: Request, allowedMethod: HttpMethod) {
+    if (request.method !== allowedMethod)
+        throw data<ApiResponse>({
+            success: false,
+            error: { message: "Invalid method please try again!" },
+        }, { status: 404 });
 }

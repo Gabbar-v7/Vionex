@@ -1,10 +1,4 @@
-import { EMailValidationError, HostnameValidationError, PasswordValidationError } from "../errors/validation.errors";
-
-export async function validateEMail(email: string | undefined): Promise<boolean> {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!email || !emailRegex.test(email)) throw new EMailValidationError(email ?? "", "Please enter a valid email");
-    return true;
-}
+import { PasswordValidationError } from "../errors/validation.errors";
 
 export async function validatePassword(
     password: string | undefined,
@@ -55,7 +49,7 @@ export async function validatePassword(
     // Check password confirmation if provided
     if (confirmPassword !== null) {
         if (password !== confirmPassword) {
-            throw new PasswordValidationError(password, "Passwords do not match");
+            throw new PasswordValidationError(confirmPassword, "Passwords do not match");
         }
     }
 

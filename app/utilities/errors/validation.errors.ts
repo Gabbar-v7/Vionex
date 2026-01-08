@@ -9,7 +9,3 @@ export class ValidationError extends Error {
 }
 
 export class PasswordValidationError extends ValidationError { }
-
-export class EMailValidationError extends ValidationError { }
-
-export class HostnameValidationError extends ValidationError { }
