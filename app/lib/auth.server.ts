@@ -2,8 +2,9 @@ import { betterAuth } from "better-auth";
 import { drizzleAdapter } from "better-auth/adapters/drizzle";
 import { mongodbAdapter } from "better-auth/adapters/mongodb";
 import { mongoDB, postgresDB } from "~/database";
-import { authSchema } from "~/database/pg.schema";
 import { appEnv } from "./env.server";
+import { sendEmail } from "./mailer.server";
+import { emailTemplates } from "~/utilities/mail/templates";
 
 export const auth = betterAuth({
   baseURL: appEnv.APP_URL,
@@ -29,31 +30,36 @@ export const auth = betterAuth({
     },
     changeEmail: {
       enabled: true,
-      // sendChangeEmailVerification: async ({ user, newEmail, url, token }) => {
-      //     await sendEmail({
-      //         to: user.email, // verification email must be sent to the current user email to approve the change
-      //         subject: 'Approve email change',
-      //         text: "",
-      //         html: getChangeEmailVerificationMail(url, newEmail)
-      //     })
-      // }
+      sendChangeEmailVerification: async ({ user, newEmail, url, token }) => {
+        const changeEmailVerificationEmail = emailTemplates.changeEmailVerificationEmail;
+        await sendEmail({
+          to: user.email,
+          subject: changeEmailVerificationEmail.subject,
+          text: changeEmailVerificationEmail.text(url),
+          html: changeEmailVerificationEmail.html(url)
+        })
+      }
     },
     deleteUser: {
       enabled: true,
       beforeDelete: async (user) => {
         // Perform any cleanup or additional checks here
       },
-      // sendDeleteAccountVerification: async (
-      //     {
-      //         user,   // The user object
-      //         url, // The auto-generated URL for deletion
-      //         token  // The verification token  (can be used to generate custom URL)
-      //     },
-      //     request  // The original request object (optional)
-      // ) => {
-
-      //     await sendEmail({ to: user.email, subject: "Verify Deletion", text: "", html: getDeleteVerificationMail(url) });
-      // },
+      sendDeleteAccountVerification: async ({
+        user,   // The user object
+        url, // The auto-generated URL for deletion
+        token  // The verification token  (can be used to generate custom URL)
+      },
+        request  // The original request object (optional)
+      ) => {
+        const deleteAccountVerificationEmail = emailTemplates.deleteAccountVerificationEmail
+        await sendEmail({
+          to: user.email,
+          subject: deleteAccountVerificationEmail.subject,
+          text: deleteAccountVerificationEmail.text(url),
+          html: deleteAccountVerificationEmail.html(url)
+        });
+      },
 
     },
   },
@@ -61,25 +67,27 @@ export const auth = betterAuth({
     enabled: true,
     autoSignIn: true,
     revokeSessionsOnPasswordReset: true,
-    // sendResetPassword: async ({ user, url }) => {
-    //     await sendEmail({
-    //         to: user.email,
-    //         subject: "Reset your password",
-    //         text: "",
-    //         html: getResetPasswordMail(url),
-    //     });
-    // },
+    sendResetPassword: async ({ user, url }) => {
+      const resetPasswordEmail = emailTemplates.resetPasswordEmail;
+      await sendEmail({
+        to: user.email,
+        subject: resetPasswordEmail.subject,
+        text: resetPasswordEmail.text(url),
+        html: resetPasswordEmail.html(url),
+      });
+    },
   },
   emailVerification: {
     sendOnSignUp: true,
-    // sendVerificationEmail: async ({ user, url, token }, request) => {
-    //     await sendEmail({
-    //         to: user.email,
-    //         subject: 'Verify your email address',
-    //         text: "",
-    //         html: getVerificationMail(url)
-    //     })
-    // }
+    sendVerificationEmail: async ({ user, url, token }, request) => {
+      const accountVerificationEmail = emailTemplates.accountVerificationEmail;
+      await sendEmail({
+        to: user.email,
+        subject: accountVerificationEmail.subject,
+        text: accountVerificationEmail.text(url),
+        html: accountVerificationEmail.html(url)
+      })
+    }
   },
 
   socialProviders: {
