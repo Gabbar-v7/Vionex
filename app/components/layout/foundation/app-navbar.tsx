@@ -46,18 +46,8 @@ type DesktopNavigationItemProps = {
 
 const items: LinkItem[] = [
   { name: "Dashboard", href: "/user/dashboard" },
-  { name: "History", href: "/user/history" },
-  {
-    name: "Tools",
-    href: "/app/tools/index",
-    type: "multipart",
-    description: "Access all your tools",
-    children: [
-      { name: "Website Auditor", href: "/user/tools/analyzer" },
-      { name: "Builder: carbon.txt", href: "/user/tools/builders/carbon-txt" },
-    ],
-  },
   { name: "Settings", href: "/user/settings" },
+  { name: "Sign Out", href: "/user/signout" },
 ];
 
 const MobileNavigationItem = ({
@@ -71,11 +61,10 @@ const MobileNavigationItem = ({
         <Link
           to={item.href}
           onClick={onClose}
-          className={`group flex items-center justify-between w-full p-3 text-lg font-semibold rounded-lg transition-all duration-200 ${
-            isActive(item.href)
-              ? "text-primary bg-primary/10"
-              : "text-foreground hover:text-foreground hover:bg-muted"
-          }`}
+          className={`group flex items-center justify-between w-full p-3 text-lg font-semibold rounded-lg transition-all duration-200 ${isActive(item.href)
+            ? "text-primary bg-primary/10"
+            : "text-foreground hover:text-foreground hover:bg-muted"
+            }`}
         >
           <div className="flex flex-col">
             <span>{item.name}</span>
@@ -92,11 +81,10 @@ const MobileNavigationItem = ({
                 key={child.name}
                 to={child.href}
                 onClick={onClose}
-                className={`block p-2 px-4 text-lg font-semibold rounded-md transition-all duration-200 ${
-                  isActive(child.href)
-                    ? "text-primary bg-primary/10"
-                    : "text-muted-foreground hover:text-foreground hover:bg-muted"
-                }`}
+                className={`block p-2 px-4 text-lg font-semibold rounded-md transition-all duration-200 ${isActive(child.href)
+                  ? "text-primary bg-primary/10"
+                  : "text-muted-foreground hover:text-foreground hover:bg-muted"
+                  }`}
               >
                 {child.name}
               </Link>
@@ -111,11 +99,10 @@ const MobileNavigationItem = ({
     <Link
       to={item.href}
       onClick={onClose}
-      className={`flex items-center w-full py-3 px-4 text-lg font-semibold rounded-lg transition-all duration-200 ${
-        isActive(item.href)
-          ? "text-primary bg-primary/10"
-          : "text-foreground hover:text-foreground hover:bg-muted"
-      }`}
+      className={`flex items-center w-full py-3 px-4 text-lg font-semibold rounded-lg transition-all duration-200 ${isActive(item.href)
+        ? "text-primary bg-primary/10"
+        : "text-foreground hover:text-foreground hover:bg-muted"
+        }`}
     >
       {item.name}
     </Link>
@@ -130,9 +117,8 @@ const DesktopNavigationItem = ({
     return (
       <NavigationMenuItem>
         <NavigationMenuTrigger
-          className={`group inline-flex h-10 w-max items-center justify-center rounded-lg bg-transparent px-4 py-2 text-lg font-semibold transition-all duration-200 hover:bg-muted hover:text-foreground focus:bg-muted focus:text-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-active:bg-muted/50 data-[state=open]:bg-muted/50 ${
-            isActive(item.href) ? "text-primary" : "text-foreground"
-          }`}
+          className={`group inline-flex h-10 w-max items-center justify-center rounded-lg bg-transparent px-4 py-2 text-lg font-semibold transition-all duration-200 hover:bg-muted hover:text-foreground focus:bg-muted focus:text-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-active:bg-muted/50 data-[state=open]:bg-muted/50 ${isActive(item.href) ? "text-primary" : "text-foreground"
+            }`}
         >
           {item.name}
         </NavigationMenuTrigger>
@@ -164,29 +150,26 @@ const DesktopNavigationItem = ({
               {item.children?.map((child: LinkChild) => (
                 <NavigationMenuLink key={child.name} asChild>
                   <Link
-                    className={`group block select-none rounded-lg p-3 leading-none no-underline outline-none transition-all duration-200 hover:bg-muted focus:bg-muted ${
-                      isActive(child.href)
-                        ? "bg-primary/10 text-primary"
-                        : "hover:text-foreground focus:text-foreground"
-                    }`}
+                    className={`group block select-none rounded-lg p-3 leading-none no-underline outline-none transition-all duration-200 hover:bg-muted focus:bg-muted ${isActive(child.href)
+                      ? "bg-primary/10 text-primary"
+                      : "hover:text-foreground focus:text-foreground"
+                      }`}
                     to={child.href}
                   >
                     <div className="px-4 flex items-center justify-between">
                       <div
-                        className={`text-lg font-semibold transition-colors ${
-                          isActive(child.href)
-                            ? "text-primary"
-                            : "text-foreground group-hover:text-primary"
-                        }`}
+                        className={`text-lg font-semibold transition-colors ${isActive(child.href)
+                          ? "text-primary"
+                          : "text-foreground group-hover:text-primary"
+                          }`}
                       >
                         {child.name}
                       </div>
                       <ArrowRight
-                        className={`h-3 w-3 transition-colors ${
-                          isActive(child.href)
-                            ? "text-primary"
-                            : "text-muted-foreground group-hover:text-primary"
-                        }`}
+                        className={`h-3 w-3 transition-colors ${isActive(child.href)
+                          ? "text-primary"
+                          : "text-muted-foreground group-hover:text-primary"
+                          }`}
                       />
                     </div>
                   </Link>
@@ -203,9 +186,8 @@ const DesktopNavigationItem = ({
     <NavigationMenuItem>
       <Link
         to={item.href}
-        className={`group inline-flex h-10 w-max items-center justify-center rounded-md px-4 py-2 text-lg font-semibold transition-colors duration-200 hover:bg-muted hover:text-foreground focus:outline-none focus-visible:ring-2 focus-visible:ring-ring ${
-          isActive(item.href) ? "bg-muted text-primary" : "text-foreground"
-        }`}
+        className={`group inline-flex h-10 w-max items-center justify-center rounded-md px-4 py-2 text-lg font-semibold transition-colors duration-200 hover:bg-muted hover:text-foreground focus:outline-none focus-visible:ring-2 focus-visible:ring-ring ${isActive(item.href) ? "bg-muted text-primary" : "text-foreground"
+          }`}
       >
         {item.name}
       </Link>
